@@ -12,11 +12,11 @@
   render();
 
   revealCat.addEventListener("click", (event) => {
+    emptyState.classList.add("hidden");
     render();
   });
 
   function render() {
-    emptyState.classList.remove("hidden");
     const article = document.createElement("article");
     article.className = "animal-card";
 
