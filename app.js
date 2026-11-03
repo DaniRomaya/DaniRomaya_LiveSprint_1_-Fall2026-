@@ -1,28 +1,76 @@
 (function () {
   "use strict()";
 
-  const STORAGE_KEY = "animal-storage";
-
   const revealDog = document.getElementById("reveal-dog");
   const revealCat = document.getElementById("reveal-cat");
   const revealCow = document.getElementById("reveal-cow");
-  const emptyState = document.getElementById("empty-state");
   const animalContainer = document.getElementById("animal-container");
 
-  render();
+  const animals = {
+    cat: {
+      name: "CAT",
+      image: "tabby-cat.jpg",
+      alt: "A tabby cat",
+    },
 
-  revealCat.addEventListener("click", (event) => {
-    emptyState.classList.add("hidden");
-    render();
+    dog: {
+      name: "DOG",
+      image: "dog.jpg",
+      alt: "A golden retriever",
+    },
+
+    cow: {
+      name: "COW",
+      image: "cow.jpg",
+      alt: "A Highland cow",
+    },
+  };
+
+  function render(animalType) {
+    let card = document.getElementById(`${animalType}-card`);
+
+    if (card) {
+      card.classList.remove("hidden");
+      return;
+    }
+
+    const animal = animals[animalType];
+
+    card = document.createElement("article");
+    card.id = `${animalType}-card`;
+    card.className = "animal-card";
+
+    card.innerHTML = `
+      <img src="${animal.image}" alt="${animal.alt}">
+
+      <button class="btn btn-hide" data-animal="${animalType}">
+        Hide Result
+      </button>
+    `;
+
+    // Add the card to the page
+    animalContainer.appendChild(card);
+  }
+
+  revealCat.addEventListener("click", () => {
+    render("cat");
   });
 
-  function render() {
-    const article = document.createElement("article");
-    article.className = "animal-card";
+  revealDog.addEventListener("click", () => {
+    render("dog");
+  });
 
-    article.innerHTML = `
-            <img src="tabby-cat.jpg" alt="cat image" class="image"> 
-            <button class = "btn btn-outline">Hide Result</button>
-            `;
-  }
-});
+  revealCow.addEventListener("click", () => {
+    render("cow");
+  });
+
+  animalContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("btn-hide")) {
+      const animalType = event.target.dataset.animal;
+
+      const card = document.getElementById(`${animalType}-card`);
+
+      card.classList.add("hidden");
+    }
+  });
+})();
