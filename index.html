@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <section class="main-container">
+      <div class="section-header">
+        <h1 class="page-title">
+          Welcome to the Interactive Reveal! What’s that Animal UI!
+        </h1>
+        <p class="page-subtitle">
+          Click on the buttons below to reveal the animal images
+        </p>
+      </div>
+      <div class="empty-state" id="empty-state">
+        <div class="animal-container" id="animal-container"></div>
+        <div class="button-container">
+          <button id="reveal-cat" class="btn btn-outline">Reveal Cat</button>
+          <button id="reveal-dog" class="btn btn-outline">Reveal Dog</button>
+          <button id="reveal-cow" class="btn btn-outline">Reveal Cow</button>
+        </div>
+      </div>
+    </section>
+    <p>
+      The missing portion of the code is the fact the button event listeners to
+      show the dynamic animal cards in the javascript file does not show the
+      cards when clicked. I know its because of the event listener or the render
+      function. The empty state hidden has to be removed.
+    </p>
     <script src="app.js"></script>
   </body>
 </html>
